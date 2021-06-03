@@ -1,55 +1,52 @@
 const player1 = {
-    name: "Sonya Blade",
-    img: "http://reactmarathon-api.herokuapp.com/assets/sonya.gif",
-    hp: 100,
-    weapon: "Bamboo sticks",
-    attack: function() {
-        console.log(name + "Fight...")
+    name: "SCORPION",
+    hp: "100",
+    img: "http://reactmarathon-api.herokuapp.com/assets/scorpion.gif",
+    weapon: ["chain", "hands"],
+    attack: function () {
+        console.log(player1.name + "Fight...");
     }
-}
+};
 
 const player2 = {
-    name: "Kitana",
-    img: "http://reactmarathon-api.herokuapp.com/assets/kitana.gif",
-    hp: 100,
-    weapon: "Battle fan",
-    attack: function() {
-        console.log(name + "Fight...")
+    name: "SONYA",
+    hp: "70",
+    img: "http://reactmarathon-api.herokuapp.com/assets/sonya.gif",
+    weapon: ["gun", "legs"],
+    attack: function () {
+        console.log(player2.name + "Fight...");
     }
-}
+};
 
+function createPlayer(player, person) {
+    const $player = document.createElement('div');
+    $player.classList.add(`${player}`);
 
-function createPlayer(player, object) {
+    const $progressbar = document.createElement('div');
+    $progressbar.classList.add('progressbar');
+    $player.appendChild($progressbar);
 
-    player = document.createElement("div");
-    player.classList.add(player + "");
+    const $character = document.createElement('div');
+    $character.classList.add('character');
+    $player.appendChild($character);
 
+    const $life = document.createElement('div');
+    $life.classList.add('life');
+    $life.style.width = person.hp + "%";
+    $progressbar.appendChild($life);
 
-    const divProgressbar = document.createElement("div");
-    divProgressbar.classList.add("progressbar");
-    player.appendChild(divProgressbar);
+    const $name = document.createElement('div');
+    $name.classList.add('name');
+    $name.innerText = person.name;
+    $progressbar.appendChild($name);
 
-    const divLife = document.createElement("div");
-    divLife.classList.add("life");
-    divLife.style.width = "100%"
-    divLife.innerText = object.hp;
-    divProgressbar.appendChild(divLife);
+    const $img = document.createElement('img');
+    $img.src = person.img;
+    $character.appendChild($img);
 
+    const $arenas = document.querySelector('.arenas');
+    $arenas.appendChild($player);
+};
 
-    const divName = document.createElement("div");
-    divName.classList.add("name");
-    divName.innerText = object.name;
-    divProgressbar.appendChild(divName);
-
-
-    const divCharacter = document.createElement("div");
-    divCharacter.classList.add("character");
-    player.appendChild(divCharacter);
-
-    const imgCharacter = document.createElement("img");
-    divCharacter.src = object.img;
-    divCharacter.appendChild(imgCharacter);
-}
-
-const divArenas = document.querySelector(".arenas");
-divArenas.appendChild(createPlayer(player, object));
+createPlayer('player1', player1);
+createPlayer('player2', player2);
