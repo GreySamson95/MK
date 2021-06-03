@@ -53,3 +53,4 @@ function createPlayer(player, object) {
 
 const divArenas = document.querySelector(".arenas");
 divArenas.appendChild(createPlayer(player, object));
+
